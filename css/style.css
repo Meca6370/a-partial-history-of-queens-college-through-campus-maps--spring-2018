@@ -266,7 +266,7 @@ nav li:nth-child(7) a:hover::before {
 }
 
 main {
-    background-color: #e3e3e3;
+    background-color: #f0f0f0;
     padding-top: 46.4px;
     width: 860px;
 }
@@ -278,22 +278,30 @@ main p {
     font-weight: 300;
 }
 
-main ul.list {
-    display: -ms-flexbox;           /* IE 10 */
-    display: -webkit-flex;          /* Safari 6.1+. iOS 7.1+ */
-    display: flex;
-    -webkit-flex-flow: wrap column; /* Safari 6.1+ */
-    flex-flow: wrap column;
-    max-height: 200px;              /* Limit height to whatever you need */
+main ul.alpha.left {
+    counter-reset: listAlpha;
 }
 
-main ul.list {
+main ul.num.left {
+    counter-reset: listNum;
+}
+
+main ul.list.left {
     background-color: #f0f0f0;
     padding-top: 80px;
     padding-bottom: 80px;
     padding-left: 80px;
-    counter-reset: listStyle;
     font-weight: 700;
+    float: left;
+}
+
+main ul.list.right {
+    background-color: #f0f0f0;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-right: 80px;
+    font-weight: 700;
+    float: right;
 }
 
 main ul.list li {
@@ -301,23 +309,54 @@ main ul.list li {
     padding-bottom: 3px;
 }
 
-main ul.list li::before {
-    counter-increment: listStyle;
-    content: counter(listStyle, upper-alpha) " · ";
+main ul.alpha li::before {
+    counter-increment: listAlpha;
+    content: counter(listAlpha, upper-alpha) " · ";
 }
 
-main ul.sublist li{
-    font-weight: lighter;
+main ul.num li::before {
+    counter-increment: listNum;
+    content: counter(listNum) " · ";
+}
+
+main ul li.special::before {
+    counter-increment: listAlpha 0;
+    content: "";
 }
 
 main ul.sublist {
     padding-top: 5px;
+    padding-left: 12px;
     counter-reset: subListStyle;
 }
 
-main ul.sublist li:before {
+main ul.sublist li {
+    font-weight: 100;
+}
+
+main ul.sublist.alpha li::before {
+    font-weight: 700;
+    counter-increment: listAlpha 0;
+    content: counter(listAlpha, upper-alpha);
+}
+
+main ul.sublist.num li::before {
+    font-weight: 700;
+    counter-increment: listNum 0;
+    content: counter(listNum);
+}
+
+main ul.sublist li::before {
     counter-increment: subListStyle;
     content: "— ";
+}
+
+.num li.increment {
+    counter-increment: listNum;
+}
+
+.alpha li.increment {
+    counter-increment: listAlpha;
 }
 
 picture {
@@ -365,4 +404,9 @@ picture.nineteen-eighty {
 
 main.map-page {
     padding-top: 0;
+}
+
+sup {
+    font-size: xx-small;
+    vertical-align: super;
 }
